@@ -1,53 +1,90 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# -------------------------------
+# Minimal Mistakes 基础配置（适配GitHub Pages）
+# -------------------------------
+title: 冷严的网络日志 # 这里改：比如「XX的技术博客」
+subtitle: 随笔记录有趣的一切 # 这里改：博客副标题
+description: 记录学习和生活 📝 # 这里改：博客描述（搜索引擎会抓取）
+author:
+  name: 冷严 # 这里改：比如「张三」
+  avatar: /assets/images/avatar.png # 头像地址：后续放头像图片到这个路径即可
+  bio: 艺术家 | 旅行家 | 摄影师 # 这里改：你的简介
+  links:
+    - label: GitHub
+      icon: fab fa-github
+      url: https://github.com/Lengyan97 # 这里改：你的GitHub地址
+    # - label: 知乎
+    #   icon: fab fa-zhihu
+    #   url: https://www.zhihu.com/people/你的知乎ID # 可选：加其他社交平台
 
-title: Flower
-email: lengyan143@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  随笔.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-# github_username: jekyll
+# 核心配置（别改，适配GitHub Pages）
+# remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: default # 主题皮肤：default（默认白）/ dark（暗黑）/ mint（薄荷绿），可自己换
+locale: zh-CN # 语言：中文
+timezone: Asia/Shanghai # 时区：上海
 
-# Build settings
-theme: minima
+# 博客基础设置
+permalink: /:year/:month/:day/:title/ # 文章链接格式（年/月/日/标题）
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# 插件（GitHub Pages支持的，别删）
 plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
   - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# 分页设置（首页文章每页显示10篇）
+paginate: 10
+paginate_path: /page:num/
+
+# 导航栏设置（后续想加导航项，直接在这里加就行）
+main_nav:
+  - title: 首页
+    url: /
+  - title: 文章
+    url: /posts/
+  - title: 关于
+    url: /about/ # 对应你的新增页面：如果你的新增页面是about.md，这里就不用改
+
+# 其他配置（别改）
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false # 评论功能：后续想加可以开，先关着
+      share: true
+      related: true
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+# 排除文件（别改）
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
